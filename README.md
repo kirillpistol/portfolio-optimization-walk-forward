@@ -1,49 +1,90 @@
-Walk-forward portfolio optimization with transaction costs, constraints and benchmark comparison
 # Portfolio Optimization with Walk-Forward Backtesting
 
 ## Overview
 
-This project implements a realistic portfolio optimization framework using:
+This project implements a realistic portfolio optimization framework designed to evaluate whether portfolio optimization adds value compared to simple allocation strategies under real-world conditions.
 
-- Walk-forward backtesting
-- Transaction cost modeling (0.1%)
-- Allocation constraints (max 40% per asset)
-- Shrinkage regularization
-- Benchmark comparison
+The model incorporates transaction costs, allocation constraints, and walk-forward validation to reduce overfitting and simulate practical investment scenarios.
 
-## Strategies
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-- Optimized portfolio (Max Sharpe)
-- Equal Weight
-- Minimum Variance
-- Risk Parity
-- S&P 500 benchmark
+## Results Overview
 
-## Methodology
+### Strategy Performance
+![Strategy Comparison](strategy_comparison.png)
 
-- Training window: 3 years
-- Rebalancing: Quarterly
-- Optimization: SLSQP
-- Out-of-sample evaluation
+### Drawdowns
+![Drawdowns](drawdowns.png)
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 ## Key Results
 
-The model compares multiple strategies and evaluates whether optimization adds value over simple allocation methods.
+- The optimized portfolio was compared against Equal Weight, Minimum Variance, and Risk Parity strategies
+- Performance was evaluated out-of-sample using walk-forward backtesting
+- Transaction costs (0.1%) were included in all strategies
 
-## Output
+  Key observation:
 
-- Performance metrics (return, volatility, Sharpe, drawdown)
-- Portfolio weights over time
-- Rebalancing events
+> Optimization does not always outperform simple strategies once transaction costs and constraints are applied.
+
+
+## Why This Matters
+
+In real-world portfolio management:
+
+- Many optimized strategies fail due to overfitting  
+- Transaction costs significantly reduce theoretical performance  
+- Simple allocation strategies often outperform complex models  
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+This project demonstrates how to properly evaluate investment strategies using realistic assumptions.
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+## Strategies Implemented
+
+- Optimized Portfolio (Max Sharpe Ratio)
+- Equal Weight Portfolio
+- Minimum Variance Portfolio
+- Risk Parity Portfolio
+- S&P 500 Benchmark
+
+## Methodology
+
+- Training window: 3 years (rolling)
+- Test period: 2022–2024
+- Rebalancing: Quarterly
+- Optimization method: SLSQP
+- Data source: Yahoo Finance (adjusted prices)
+
+## Outputs
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+The project generates:
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+- Performance metrics (return, volatility, Sharpe ratio, drawdown)
+- Portfolio weight evolution over time
+- Rebalancing events and turnover
 - Strategy comparison charts
-
-## Key Insight
-
-Optimization only matters if it consistently outperforms simple benchmarks after transaction costs.
 
 ## Tools
 
 - Python
 - Pandas / NumPy
+- SciPy
+- Matplotlib
+- yFinance
+
+## Project Structure
+
+portfolio_walk_forward_backtest.ipynb
+strategy_performance_raw.csv
+all_weights_history.csv
+all_rebalance_events.csv
+
+## Author
+
+Pistol Kirill
 - SciPy
 - yFinance
